@@ -1,12 +1,16 @@
 [
     {
-        "name": "adolf",
-        "balance": "6.000.000",
-        "rfid": "1234"
+        "name": "Jan-Test",
+        "balance": 10.25,
+        "rfid": "768366176",
+        "spent": 20.95,
+        "seen": "25/03/2023"
     } ,
     {
         "name": "emma",
-        "balance": "5.10",
-        "rfid": "40598723907"
+        "balance": 5.10,
+        "rfid": "40598723907",
+        "spent": 20.95,
+        "seen": "25/03/2023"
     } 
 ]
