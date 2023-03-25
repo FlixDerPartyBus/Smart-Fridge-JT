@@ -9,27 +9,25 @@ import { takeUntil } from 'rxjs';
 })
 export class AppComponent {
   title = 'app';
+  private rfid = ''
   @HostListener('document:keypress', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {
-    let rfid;
-    rfid = rfid + event.key;
     if (event.key === 'Enter') {
-      this.sendRequest(rfid);
-      console.log(rfid)
-      rfid = '';
+      this.sendRequest(this.rfid);
+      this.rfid = '';
     }
+    this.rfid = this.rfid + event.key;
   }
 
   constructor(
     public readonly http: HttpClient,
   ) {
-    console.log('jo')
   }
 
   private sendRequest(rfid: string) {
     this.http.get('http://localhost:3000/getPerson?rfid=' + rfid).pipe(
-    ).subscribe(val => {
-      console.log(val);
+    ).subscribe(person => {
+      console.log(person);
     });
   }
 }
