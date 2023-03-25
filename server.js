@@ -29,12 +29,17 @@ app.get('/NFC', (req, res) => {
     const stringValue = nfcdata.toString().replace(/(\r\n|\n|\r)/gm, "");
     res.send({data: stringValue});
   })
-  // res.send('1234567890');
 });
 
-app.get('/', (req, res) => {
-  res.send(path.join(__dirname, './app/dist/index.html'));
+app.get('*.*', express.static('./app/dist/app'));
+
+app.all('*', function (req, res) {
+    res.status(200).sendFile(`/`, {root: './app/dist/app'});
 });
+
+// app.get('/', (req, res) => {
+//   res.sendFile(path.join(__dirname, './app/dist/app/index.html'));
+// });
 
 app.listen(3000, () => {
   console.log('server started on port 3000');

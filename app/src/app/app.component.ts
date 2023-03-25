@@ -12,6 +12,7 @@ export class AppComponent {
   constructor(
     private readonly test: HttpClient,
   ) {
+    console.log('jo')
     test.get('http://localhost:3000/NFC').pipe(
     ).subscribe(val => {
       console.log(val);
