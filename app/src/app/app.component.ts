@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { HttpClient, HttpContext } from '@angular/common/http';
 import { takeUntil } from 'rxjs';
 
@@ -9,11 +9,25 @@ import { takeUntil } from 'rxjs';
 })
 export class AppComponent {
   title = 'app';
+  @HostListener('document:keypress', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent) {
+    let rfid;
+    rfid = rfid + event.key;
+    if (event.key === 'Enter') {
+      this.sendRequest(rfid);
+      console.log(rfid)
+      rfid = '';
+    }
+  }
+
   constructor(
-    private readonly test: HttpClient,
+    public readonly http: HttpClient,
   ) {
     console.log('jo')
-    test.get('http://localhost:3000/NFC').pipe(
+  }
+
+  private sendRequest(rfid: string) {
+    this.http.get('http://localhost:3000/getPerson?rfid=' + rfid).pipe(
     ).subscribe(val => {
       console.log(val);
     });
