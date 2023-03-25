@@ -1,13 +1,12 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 const path = require('path');
-const process = require('process');
+const readline = require('readline');
 
-var stdin = process.openStdin();
-
-stdin.resume();
-stdin.on('data', (keydata) => {
-  process.stdout.write('outut: ' + keydata)
+const rl =readline.createInterface({
+  input: process.stdin,
+  output: process.stdout,
+  terminal: false
 });
 
 var app = express();
@@ -25,10 +24,14 @@ app.post('/post-test', (req, res) => {
 });
 
 app.get('/NFC', (req, res) => {
-  stdin.on('data', (nfcdata) => {
-    const stringValue = nfcdata.toString().replace(/(\r\n|\n|\r)/gm, "");
-    res.send({data: stringValue});
-  })
+  rl.on('line', (nfcdata) => {
+    console.log('nfcdata', nfcdata);
+    // const stringValue = nfcdata.toString();
+    // console.log('output:', stringValue);
+
+    res.send({data: nfcdata});
+  });
+
 });
 
 app.get('*.*', express.static('./app/dist/app'));
