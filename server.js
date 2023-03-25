@@ -1,5 +1,10 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var fs = require('fs');
+
+//Jan's requirements
+// var Gpio = require('onoff').Gpio
+
 
 var app = express();
 
@@ -16,8 +21,13 @@ app.post('/post-test', (req, res) => {
 });
 
 app.get('/getPerson', (req, res) => {
-  console.log('getPerson', req.query.rfid);
-  res.status(200).send({person: 'success'});
+  const people = JSON.parse(fs.readFileSync('./data.json', 'utf8'));
+  const person = people.find(person => {
+    console.log(person.rfid, req.query.rfid)
+    return person.rfid === req.query.rfid;
+  });
+  console.log(person);
+  res.status(200).send({ person });
 });
 
 app.get('*.*', express.static('./app/dist/app'));
@@ -28,4 +38,36 @@ app.all('*', function (req, res) {
 
 app.listen(3000, () => {
   console.log('server started on port 3000');
-})
+});
+
+/*const data = fs.readFile('./data.json', 'utf8', (err, file) => {
+    if (err) {
+      if(err.code === 'ENOENT' ){
+        console.log("Does not exist");
+        //TODO create File
+        return;
+      }
+      console.error(err.code);
+      return;
+    }
+    try {
+      const json = JSON.parse(file);
+      return json;
+    } catch (err) {
+      console.log("Error parsing JSON string:", err);
+      return;
+    }
+  });
+  return data;
+  */
+
+
+/*
+  var pin = new Gpio(19, 'out'); //use GPIO pin 4, and specify that it is output
+  
+  function openRelais() {
+      pin.writeSync(1); //set pin state to 1 (open)
+    //TODO wait sync?
+      pin.writeSync(0); //set pin state to 0 (open)
+  }
+  */
