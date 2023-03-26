@@ -1,6 +1,8 @@
 import { Component, HostListener } from '@angular/core';
-import { HttpClient, HttpContext } from '@angular/common/http';
-import { takeUntil } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { RestService } from './services/rest.service';
+import { Router } from '@angular/router';
+import { LoginComponent } from './login/login.component';
 
 @Component({
   selector: 'app-root',
@@ -12,22 +14,27 @@ export class AppComponent {
   private rfid = ''
   @HostListener('document:keypress', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {
+    // todo
     if (event.key === 'Enter') {
-      this.sendRequest(this.rfid);
+      this.getPerson(this.rfid);
       this.rfid = '';
     }
     this.rfid = this.rfid + event.key;
   }
 
   constructor(
-    public readonly http: HttpClient,
+    private readonly restService: RestService,
+    private readonly router: Router
   ) {
   }
 
-  private sendRequest(rfid: string) {
-    this.http.get('http://localhost:3000/getPerson?rfid=' + rfid).pipe(
-    ).subscribe(person => {
-      console.log(person);
+  private getPerson(rfid: string) {
+    this.restService.getPerson(rfid).then(() => {
+      this.router.navigate(['marketplace']);
+    }).catch((err) => {
+      if(err === 'no person found') {
+        this.router.navigate(['newPerson']);
+      }
     });
   }
 }
