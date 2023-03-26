@@ -1,0 +1,6 @@
+<div>
+    <div *ngFor="let item of allItems" (click)="addItem(item)">{{item.name}}</div>
+</div>
+<div (click)="buy()">
+    Kaufen
+</div>

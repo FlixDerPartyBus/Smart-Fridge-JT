@@ -15,7 +15,7 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.post('/post-test', (req, res) => {
+app.post('/buy', (req, res) => {
   console.log('gotbody', req);
   res.sendStatus(200);
 });
@@ -63,7 +63,7 @@ app.listen(3000, () => {
 
 
 /*
-  var pin = new Gpio(19, 'out'); //use GPIO pin 4, and specify that it is output
+  var pin = new Gpio(19, 'out'); //use GPIO pin 19, and specify that it is output
   
   function openRelais() {
       pin.writeSync(1); //set pin state to 1 (open)

@@ -4,15 +4,23 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { MarketplaceComponent } from './marketplace/marketplace.component';
+import { LoginComponent } from './login/login.component';
+import { NewPersonComponent } from './new-person/new-person.component';
+import { CommonModule } from "@angular/common";
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MarketplaceComponent,
+    LoginComponent,
+    NewPersonComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule 
+    HttpClientModule,
+    CommonModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
