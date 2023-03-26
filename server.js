@@ -2,10 +2,6 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var fs = require('fs');
 
-//Jan's requirements
-// var Gpio = require('onoff').Gpio
-
-
 var app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -62,12 +58,3 @@ app.listen(3000, () => {
   */
 
 
-/*
-  var pin = new Gpio(19, 'out'); //use GPIO pin 19, and specify that it is output
-  
-  function openRelais() {
-      pin.writeSync(1); //set pin state to 1 (open)
-    //TODO wait sync?
-      pin.writeSync(0); //set pin state to 0 (open)
-  }
-  */
