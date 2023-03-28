@@ -7,7 +7,7 @@ export const items: Item[] = [
     },
     {
         name: 'Eistee',
-        cost: 1
+        cost: 0.5
     },
     {
         name: 'Limo',
@@ -15,11 +15,11 @@ export const items: Item[] = [
     },
     {
         name: 'Wasser',
-        cost: 1
+        cost: 0.5
     },
     {
         name: 'Pizza',
-        cost: 1
+        cost: 2.5
     },
     {
         name: 'Mozarella Sticks',
@@ -27,18 +27,20 @@ export const items: Item[] = [
     },
     {
         name: 'Eis',
-        cost: 1
+        cost: 0.25
     },
     {
         name: 'Laugenstangen',
-        cost: 1
+        cost: 0.25
     },
     {
         name: 'Chilly Chees Nuggets',
-        cost: 1
+        cost: 2.5
     },
     {
         name: 'Frühlingsrollen',
-        cost: 1
+        cost: 2.5
     },
 ]
+
+//Felix hat viel Spaß mit:
