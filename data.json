@@ -1,12 +1,1 @@
-[
-    {
-        "name": "adolf",
-        "balance": "6.000.000",
-        "rfid": "1234"
-    } ,
-    {
-        "name": "emma",
-        "balance": "5.10",
-        "rfid": "40598723907"
-    } 
-]
+[{"name":"jan","balance":5998,"rfid":"1234"},{"name":"emma","balance":5.1,"rfid":"40598723907"}]

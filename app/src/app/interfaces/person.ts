@@ -1,5 +1,6 @@
 export interface Person {
     name: string,
     balance: number,
-    rfid: string
+    rfid: string,
+    admin?: boolean
 }

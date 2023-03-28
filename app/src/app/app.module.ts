@@ -8,13 +8,15 @@ import { MarketplaceComponent } from './marketplace/marketplace.component';
 import { LoginComponent } from './login/login.component';
 import { NewPersonComponent } from './new-person/new-person.component';
 import { CommonModule } from "@angular/common";
+import { SuccessfullComponent } from './successfull/successfull.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MarketplaceComponent,
     LoginComponent,
-    NewPersonComponent
+    NewPersonComponent,
+    SuccessfullComponent
   ],
   imports: [
     BrowserModule,
