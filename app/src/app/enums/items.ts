@@ -44,3 +44,15 @@ export const items: Item[] = [
 ]
 
 //Felix hat viel Spaß mit:
+/*
+- Chip anlegen
+- Chip aufladen
+- Statistik wieviel Guthaben gesamt auf allen Chips ist
+- (Statistik über die Top 10: Wer am meisten ausgegeben hat)
+- manuell open
+- Abfrage über Infos eines Chips
+
+weitere ToDos 
+Inventar System? Wieviel von was noch da ist. Aktualisieren wenn gekauft (zur überwachung intern ob noch sachen 
+    ohne bezahlen genommen werden)
+*/
