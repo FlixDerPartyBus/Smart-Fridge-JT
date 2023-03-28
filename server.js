@@ -2,6 +2,8 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var fs = require('fs');
 
+var GpioModule = require('./gpio.js');
+
 var app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -20,6 +22,14 @@ app.get('/getPerson', (req, res) => {
   const people = JSON.parse(fs.readFileSync('./data.json', 'utf8'));
   const person = people.find(person => {
     console.log(person.rfid, req.query.rfid)
+
+
+    /*
+    Testing GPIO
+    */
+    console.log(typeof GpioModule.openRelais);
+
+
     return person.rfid === req.query.rfid;
   });
   console.log(person);
@@ -35,6 +45,7 @@ app.all('*', function (req, res) {
 app.listen(3000, () => {
   console.log('server started on port 3000');
 });
+
 
 /*const data = fs.readFile('./data.json', 'utf8', (err, file) => {
     if (err) {
