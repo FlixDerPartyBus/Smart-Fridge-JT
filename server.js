@@ -1,6 +1,8 @@
 var express = require('express');
 var fs = require('fs');
 
+var GpioModule = require('./gpio.js');
+
 var app = express();
 app.use(express.json());
 app.use(function (req, res, next) {
@@ -23,6 +25,15 @@ app.post('/buy', (req, res) => {
 app.get('/getPerson', (req, res) => {
   const people = JSON.parse(fs.readFileSync('./data.json', 'utf8'));
   const person = people.find(person => {
+    console.log(person.rfid, req.query.rfid)
+
+
+    /*
+    Testing GPIO
+    */
+    console.log(typeof GpioModule.openRelais);
+
+
     return person.rfid === req.query.rfid;
   });
   res.status(200).send({ person });
