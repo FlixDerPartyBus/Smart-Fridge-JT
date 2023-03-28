@@ -19,21 +19,13 @@ app.post('/buy', (req, res) => {
   const total = req.body.items.reduce((sum, item) => item.cost + sum, 0);
   person.balance = person.balance - total;
   fs.writeFileSync('./data.json', JSON.stringify(people));
+  GpioModule.openRelais();
   res.sendStatus(200);
 });
 
 app.get('/getPerson', (req, res) => {
   const people = JSON.parse(fs.readFileSync('./data.json', 'utf8'));
   const person = people.find(person => {
-    console.log(person.rfid, req.query.rfid)
-
-
-    /*
-    Testing GPIO
-    */
-    console.log(typeof GpioModule.openRelais);
-
-
     return person.rfid === req.query.rfid;
   });
   res.status(200).send({ person });

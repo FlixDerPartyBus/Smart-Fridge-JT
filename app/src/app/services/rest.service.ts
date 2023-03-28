@@ -41,7 +41,6 @@ export class RestService {
     return new Promise((resolve, reject) => {
       this.http.post('http://localhost:3000/buy', { items: items, buyer: this.currentlyLoggedInPerson?.rfid }, {responseType: 'text'}).toPromise()
         .then(() => {
-          console.log('bruh')
           this.router.navigate(['successfull']);
           this.currentlyLoggedInPerson = undefined;
           resolve();

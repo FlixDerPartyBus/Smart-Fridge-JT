@@ -9,6 +9,7 @@ import { LoginComponent } from './login/login.component';
 import { NewPersonComponent } from './new-person/new-person.component';
 import { CommonModule } from "@angular/common";
 import { SuccessfullComponent } from './successfull/successfull.component';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { SuccessfullComponent } from './successfull/successfull.component';
     MarketplaceComponent,
     LoginComponent,
     NewPersonComponent,
-    SuccessfullComponent
+    SuccessfullComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,

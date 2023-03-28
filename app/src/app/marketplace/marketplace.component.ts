@@ -30,7 +30,6 @@ export class MarketplaceComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentlyLoggedInPerson = this.rest.currentlyLoggedInPerson!;
-    console.log(this.currentlyLoggedInPerson)
   }
 
   public addItem(item: Item) {
@@ -43,5 +42,14 @@ export class MarketplaceComponent implements OnInit {
       .catch((err) => {
         console.log(err);
       });
+  }
+
+  public logout() {
+    this.rest.currentlyLoggedInPerson = undefined;
+    this.router.navigate(['logout']);
+  }
+
+  public admin() {
+    this.router.navigate(['admin']);
   }
 }

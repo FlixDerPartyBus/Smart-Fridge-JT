@@ -2,6 +2,6 @@
 <div>
     <div *ngFor="let item of allItems" (click)="addItem(item)">{{item.name}}</div>
 </div>
-<div (click)="buy()">
-    Kaufen
-</div>
+<div (click)="logout()">Ausloggen</div>
+<div *ngIf="!!currentlyLoggedInPerson.admin" (click)="admin()">Admin Menü</div>
+<div (click)="buy()"> Kaufen</div>
