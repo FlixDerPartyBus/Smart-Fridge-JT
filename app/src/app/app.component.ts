@@ -11,30 +11,5 @@ import { LoginComponent } from './login/login.component';
 })
 export class AppComponent {
   title = 'app';
-  private rfid = ''
-  @HostListener('document:keypress', ['$event'])
-  handleKeyboardEvent(event: KeyboardEvent) {
-    // todo
-    if (event.key === 'Enter') {
-      this.getPerson(this.rfid);
-      this.rfid = '';
-    }
-    this.rfid = this.rfid + event.key;
-  }
 
-  constructor(
-    private readonly restService: RestService,
-    private readonly router: Router
-  ) {
-  }
-
-  private getPerson(rfid: string) {
-    this.restService.getPerson(rfid).then(() => {
-      this.router.navigate(['marketplace']);
-    }).catch((err) => {
-      if(err === 'no person found') {
-        this.router.navigate(['newPerson']);
-      }
-    });
-  }
 }

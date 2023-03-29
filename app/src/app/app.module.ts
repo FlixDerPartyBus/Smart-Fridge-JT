@@ -10,6 +10,10 @@ import { NewPersonComponent } from './new-person/new-person.component';
 import { CommonModule } from "@angular/common";
 import { SuccessfullComponent } from './successfull/successfull.component';
 import { AdminComponent } from './admin/admin.component';
+import { FormsModule } from '@angular/forms';
+import { AllInfosComponent } from './admin/all-infos/all-infos.component';
+import { RechargeChipComponent } from './admin/recharge-chip/recharge-chip.component';
+import { RegisterPersonComponent } from './admin/register-person/register-person.component';
 
 @NgModule({
   declarations: [
@@ -18,13 +22,17 @@ import { AdminComponent } from './admin/admin.component';
     LoginComponent,
     NewPersonComponent,
     SuccessfullComponent,
-    AdminComponent
+    AdminComponent,
+    AllInfosComponent,
+    RechargeChipComponent,
+    RegisterPersonComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     CommonModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

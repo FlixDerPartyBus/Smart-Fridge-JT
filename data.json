@@ -20,5 +20,10 @@
         "spent": 20.95,
         "seen": "25/03/2023",
         "admin": true
+    },
+    {
+        "name": "Felix",
+        "rfid": "0000",
+        "balance": "10"
     }
 ]

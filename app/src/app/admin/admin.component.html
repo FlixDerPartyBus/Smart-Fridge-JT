@@ -1,1 +1,23 @@
-<div (click)="logout()">Ausloggen</div>
+<div id="buttonList">
+    <div (click)="openRegisterPerson()">Chip anlegen</div>
+    <div (click)="openRechargeChip()">Chip aufladen</div>
+    <div (click)="openInfos()">Alle Infos</div>
+    <div (click)="open()">Öffnen</div>
+    <div (click)="logout()">Ausloggen</div>
+</div>
+
+<div *ngIf="showRegisterPerson">
+    <div id="close" (click)="close()">Schließen</div>
+    <input id="nameInput" ngDefaultControl [(ngModel)]="newPerson.name" placeholder="Name"/>
+    <input id="rfidInput" ngDefaultControl [(ngModel)]="newPerson.rfid" placeholder="RFID - antippen und danach Chip an Reader halten"/>
+    <input id="balanceInput" ngDefaultControl [(ngModel)]="newPerson.balance" placeholder="Guthaben"/>
+    <div id="submitNewPerson" (click)="submitNewPerson()">Fertig</div>
+</div>
+
+<div *ngIf="showRechargeChip">
+    <div id="close" (click)="close()">Schließen</div>
+</div>
+
+<div *ngIf="showAllInfos">
+    <div id="close" (click)="close()">Schließen</div>
+</div>

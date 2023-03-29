@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
+import { Router } from '@angular/router';
+import { RestService } from '../services/rest.service';
 
 @Component({
   selector: 'app-login',
@@ -6,5 +8,29 @@ import { Component } from '@angular/core';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
+  private rfid = ''
+  @HostListener('document:keypress', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent) {
+    if (event.key === 'Enter') {
+      this.getPerson(this.rfid);
+      this.rfid = '';
+    }
+    this.rfid = this.rfid + event.key;
+  }
 
+  constructor(
+    private readonly restService: RestService,
+    private readonly router: Router
+  ) {
+  }
+
+  private getPerson(rfid: string) {
+    this.restService.getPerson(rfid).then(() => {
+      this.router.navigate(['marketplace']);
+    }).catch((err) => {
+      if(err === 'no person found') {
+        this.router.navigate(['newPerson']);
+      }
+    });
+  }
 }
