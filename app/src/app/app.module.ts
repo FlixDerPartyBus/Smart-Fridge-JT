@@ -6,7 +6,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MarketplaceComponent } from './marketplace/marketplace.component';
 import { LoginComponent } from './login/login.component';
-import { NewPersonComponent } from './new-person/new-person.component';
 import { CommonModule } from "@angular/common";
 import { SuccessfullComponent } from './successfull/successfull.component';
 import { AdminComponent } from './admin/admin.component';
@@ -20,7 +19,6 @@ import { RegisterPersonComponent } from './admin/register-person/register-person
     AppComponent,
     MarketplaceComponent,
     LoginComponent,
-    NewPersonComponent,
     SuccessfullComponent,
     AdminComponent,
     AllInfosComponent,

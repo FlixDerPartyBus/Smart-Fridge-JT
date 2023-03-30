@@ -28,9 +28,8 @@ export class LoginComponent {
     this.restService.getPerson(rfid).then(() => {
       this.router.navigate(['marketplace']);
     }).catch((err) => {
-      if(err === 'no person found') {
-        this.router.navigate(['newPerson']);
-      }
+      console.error(err);
+      this.rfid = '';
     });
   }
 }

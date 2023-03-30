@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { AdminComponent } from './admin/admin.component';
 import { LoginComponent } from './login/login.component';
 import { MarketplaceComponent } from './marketplace/marketplace.component';
-import { NewPersonComponent } from './new-person/new-person.component';
 import { SuccessfullComponent } from './successfull/successfull.component';
 
 const routes: Routes = [  
@@ -14,10 +13,6 @@ const routes: Routes = [
   {
     path: 'marketplace',
     component: MarketplaceComponent
-  },
-  {
-    path: 'newPerson',
-    component: NewPersonComponent
   },
   {
     path: 'successfull',

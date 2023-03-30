@@ -14,11 +14,7 @@ export class AdminComponent {
   public showRegisterPerson = false;
   public showRechargeChip = false;
   public showAllInfos = false;
-  public newPerson: Person = {
-    name: '',
-    rfid: '',
-    balance: 0
-  };
+
 
   constructor(
     private readonly router: Router,
@@ -33,8 +29,13 @@ export class AdminComponent {
     }, 30000);
   }
 
-  public submitNewPerson() {
-    this.rest.registerNewPerson(this.newPerson)
+  public submitNewPerson(person: Person) {
+    this.rest.registerNewPerson(person)
+    .then(() => this.close())
+  }
+
+  public submitNewBalance(newData: {person: Person, balance: number}) {
+    this.rest.rechargeChip(newData)
     .then(() => this.close())
   }
 
@@ -52,7 +53,7 @@ export class AdminComponent {
   }
 
   public openRechargeChip() {
-    this.showAllInfos = true;
+    this.showRechargeChip = true;
   }
 
   public openInfos() {
@@ -60,6 +61,8 @@ export class AdminComponent {
   }
 
   public close() {
+    this.showRegisterPerson = false;
+    this.showRechargeChip = false;
     this.showAllInfos = false
   }
 }

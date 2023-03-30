@@ -1,1 +1,6 @@
-<p>register-person works!</p>
+<button id="close" (click)="close()">Schließen</button>
+<input id="nameInput" ngDefaultControl [(ngModel)]="newPerson.name" placeholder="Name" />
+<input id="rfidInput" ngDefaultControl [(ngModel)]="newPerson.rfid"
+    placeholder="RFID - antippen und danach Chip an Reader halten" />
+<input id="balanceInput" ngDefaultControl [(ngModel)]="newPerson.balance" placeholder="Guthaben" />
+<button id="submitNewPerson" (click)="submitNewPerson()" [disabled]="isSubmitDisabled()">Fertig</button>

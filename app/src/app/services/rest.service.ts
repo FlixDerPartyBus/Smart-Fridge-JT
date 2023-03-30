@@ -51,17 +51,6 @@ export class RestService {
     });
   }
 
-  public registerNewPerson(newPerson: Person): Promise<void> {
-    return new Promise((resolve, reject) => {
-      this.http.post('http://localhost:3000/newPerson', { person: newPerson }).toPromise()
-        .then(() => {
-          resolve();
-        })
-        .catch((err) => {
-          reject(err);
-        });
-    });
-  }
 
   public buyItems(items: Item[]): Promise<void> {
     return new Promise((resolve, reject) => {
@@ -79,7 +68,31 @@ export class RestService {
 
   public open(): Promise<void> {
     return new Promise((resolve, reject) => {
-      this.http.post('http://localhost:3000/open', {}).toPromise()
+      this.http.post('http://localhost:3000/open', {}, { responseType: 'text' }).toPromise()
+        .then(() => {
+          resolve();
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+  }
+  
+  public registerNewPerson(newPerson: Person): Promise<void> {
+    return new Promise((resolve, reject) => {
+      this.http.post('http://localhost:3000/newPerson', { person: newPerson }, { responseType: 'text' }).toPromise()
+        .then(() => {
+          resolve();
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+  }
+
+  public rechargeChip(newData: {person: Person, balance: number}): Promise<void> {
+    return new Promise((resolve, reject) => {
+      this.http.post('http://localhost:3000/rechargeChip', { newPersonData: newData }, { responseType: 'text' }).toPromise()
         .then(() => {
           resolve();
         })

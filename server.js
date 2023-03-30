@@ -31,6 +31,15 @@ app.post('/newPerson', (req, res) => {
   res.sendStatus(200);
 });
 
+app.post('/rechargeChip', (req, res) => {
+  const people = JSON.parse(fs.readFileSync('./data.json', 'utf8'));
+  const person = people.find(person => person.rfid === req.body.newPersonData.person.rfid);
+  console.log(typeof(person.balance), typeof(req.body.newPersonData.balance));
+  person.balance = Number(person.balance) + Number(req.body.newPersonData.balance);
+  fs.writeFileSync('./data.json', JSON.stringify(people));
+  GpioModule.openRelais();
+  res.sendStatus(200);
+});
 
 app.post('/open', (req, res) => {
   GpioModule.openRelais();
