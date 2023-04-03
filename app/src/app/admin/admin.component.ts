@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subject } from 'rxjs';
 import { Person } from '../interfaces/person';
 import { RestService } from '../services/rest.service';
 
@@ -10,33 +11,44 @@ import { RestService } from '../services/rest.service';
 })
 export class AdminComponent {
 
+  @HostListener('window:touchend') refreshUserState() {
+    clearTimeout(this.userActivity);
+    this.setTimeout();
+  }
+
   public allPersons: Person[] = [];
   public showRegisterPerson = false;
   public showRechargeChip = false;
   public showAllInfos = false;
 
+  private userActivity: any;
+  private userInactive: Subject<any> = new Subject();
+
+  private setTimeout() {
+    this.userActivity = setTimeout(() => this.userInactive.next(undefined), 30000);
+  }
 
   constructor(
     private readonly router: Router,
     private readonly rest: RestService
   ) {
+    this.setTimeout();
+    this.userInactive.subscribe(() => this.logout());
+
     this.rest.getAllPersons().then((persons: Person[]) => {
       this.allPersons = persons;
-      console.log(this.allPersons)
     })
-    setTimeout(() => {
-      this.logout();
-    }, 30000);
+
   }
 
   public submitNewPerson(person: Person) {
     this.rest.registerNewPerson(person)
-    .then(() => this.close())
+      .then(() => this.close())
   }
 
-  public submitNewBalance(newData: {person: Person, balance: number}) {
+  public submitNewBalance(newData: { person: Person, balance: number }) {
     this.rest.rechargeChip(newData)
-    .then(() => this.close())
+      .then(() => this.close())
   }
 
   public open() {
