@@ -16,11 +16,11 @@ app.post('/buy', (req, res) => {
   const person = people.find(person => {
     return person.rfid === req.body.buyer;
   });
-  const total = req.body.items.reduce((sum, item) => item.cost + sum, 0);
+  const total = req.body.items.reduce((sum, item) => (item.cost + sum) * item.count, 0);
   person.balance = person.balance - total;
   fs.writeFileSync('./data.json', JSON.stringify(people));
   GpioModule.openRelais();
-  res.sendStatus(200);
+  res.status(200).send({person});
 });
 
 app.post('/newPerson', (req, res) => {

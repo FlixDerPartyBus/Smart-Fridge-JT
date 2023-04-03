@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { items } from '../enums/items';
 import { Item } from '../interfaces/item';
 import { Person } from '../interfaces/person';
+import { ShoppingCartItem } from '../interfaces/shoppingCartItem';
 import { RestService } from '../services/rest.service';
 
 @Component({
@@ -11,7 +12,7 @@ import { RestService } from '../services/rest.service';
   styleUrls: ['./marketplace.component.scss']
 })
 export class MarketplaceComponent implements OnInit {
-  public shoppingCart: Item[] = [];
+  public shoppingCart: ShoppingCartItem[] = [];
   public allItems = items;
   public currentlyLoggedInPerson: Person = {
     name: 'unkown',
@@ -33,7 +34,26 @@ export class MarketplaceComponent implements OnInit {
   }
 
   public addItem(item: Item) {
-    this.shoppingCart.push(item);
+    const foundItem = this.shoppingCart.find(shoppingCartItem => shoppingCartItem.name === item.name);
+    if (!!foundItem) {
+      foundItem.count = foundItem.count + 1;
+    } else {
+      this.shoppingCart.push({ ...item, count: 1 });
+    }
+  }
+
+  public removeItem(item: Item) {
+    const foundItem = this.shoppingCart.find(shoppingCartItem => shoppingCartItem.name === item.name)
+    if (foundItem) {
+      if (foundItem.count > 1) {
+        foundItem.count = foundItem.count - 1;
+      } else {
+        const index = this.shoppingCart.findIndex(shoppingCartItem => shoppingCartItem.name === item.name);
+        if (index > -1) {
+          this.shoppingCart.splice(index, 1);
+        }
+      }
+    }
   }
 
   public buy() {
