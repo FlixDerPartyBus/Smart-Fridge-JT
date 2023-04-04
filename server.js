@@ -65,5 +65,5 @@ app.all('*', function (req, res) {
 });
 
 app.listen(3000, () => {
-  require('child_process').exec('start http://localhost:3000/');
+  require('child_process').exec('google-chrome --no-sandbox http://localhost:3000/');
 });
