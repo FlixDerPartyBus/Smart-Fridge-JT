@@ -1,9 +1,11 @@
 <div id="customer">{{currentlyLoggedInPerson.name}} angemeldet {{currentlyLoggedInPerson.balance}}</div>
-<div>
-    <div *ngFor="let item of allItems" (click)="addItem(item)">{{item.name}}</div>
-</div>
-<div>
-    <div *ngFor="let item of shoppingCart" (click)="removeItem(item)">{{item.name}} {{item.count}}</div>
+<div id="listWrapper">
+    <div id="availableList">
+        <div *ngFor="let item of allItems" (click)="addItem(item)">{{item.name}}</div>
+    </div>
+    <div id="shoppingCartList">
+        <div *ngFor="let item of shoppingCart" (click)="removeItem(item)">{{item.name}} {{item.count}}</div>
+    </div>
 </div>
 <button (click)="logout()">Ausloggen</button>
 <button *ngIf="!!currentlyLoggedInPerson.admin" (click)="admin()">Admin Menü</button>

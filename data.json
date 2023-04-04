@@ -23,7 +23,8 @@
     },
     {
         "name": "Felix",
-        "rfid": "0000",
-        "balance": "10"
+        "rfid": "1234",
+        "balance": "10",
+        "admin": true
     }
 ]

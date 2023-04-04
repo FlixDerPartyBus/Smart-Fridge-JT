@@ -1,0 +1,35 @@
+:host {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    overflow: hidden;
+
+    div#customer {
+        height: 60px;
+        font-size: 50px;
+        padding: 5px;
+        background-color: #555555;
+    }
+
+    div#listWrapper {
+        display: flex;
+        align-items: stretch;
+        flex: 1 1 auto;
+        overflow: hidden;
+        div#availableList {
+            flex: 1 0 50%;
+            font-size: 30px;
+            overflow: auto;
+            border-right: solid black 1px;
+        }
+
+        div#shoppingCartList {
+            flex: 1 0 50%;
+            font-size: 30px;
+            overflow: auto;
+            border-left: solid black 1px;
+        }
+    }
+}
