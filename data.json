@@ -1,1 +1,29 @@
-[{"name":"Jan-Test","balance":10.25,"rfid":"768366176","spent":20.95,"seen":"25/03/2023"},{"name":"emma","balance":5.1,"rfid":"40598723907","spent":20.95,"seen":"25/03/2023"},{"name":"richboy","balance":25,"rfid":"1234","spent":20.95,"seen":"25/03/2023","admin":true},{"name":"Felix","rfid":"0000","balance":"10"}]
+[
+    {
+        "name": "Jan-Test",
+        "balance": 10.25,
+        "rfid": "768366176",
+        "spent": 20.95,
+        "seen": "25/03/2023"
+    },
+    {
+        "name": "emma",
+        "balance": 5.1,
+        "rfid": "40598723907",
+        "spent": 20.95,
+        "seen": "25/03/2023"
+    },
+    {
+        "name": "richboy",
+        "balance": 25,
+        "rfid": "1098115657",
+        "spent": 20.95,
+        "seen": "25/03/2023",
+        "admin": true
+    },
+    {
+        "name": "Felix",
+        "rfid": "0000",
+        "balance": "10"
+    }
+]
