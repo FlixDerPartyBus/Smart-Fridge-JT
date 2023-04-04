@@ -10,7 +10,8 @@ import { RestService } from '../services/rest.service';
 export class LoginComponent {
   private rfid = ''
   @HostListener('document:keypress', ['$event'])
-  handleKeyboardEvent(event: KeyboardEvent) {
+  handleKeyboardEvent(event: KeyboardEvent) {    
+    document.documentElement.requestFullscreen();
     if (event.key === 'Enter') {
       this.getPerson(this.rfid);
       this.rfid = '';

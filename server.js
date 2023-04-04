@@ -1,6 +1,5 @@
 var express = require('express');
 var fs = require('fs');
-
 var GpioModule = require('./gpio.js');
 
 var app = express();
@@ -66,5 +65,5 @@ app.all('*', function (req, res) {
 });
 
 app.listen(3000, () => {
-  console.log('server started on port 3000');
+  require('child_process').exec('start http://localhost:3000/');
 });
