@@ -15,12 +15,14 @@ app.post('/buy', (req, res) => {
   const person = people.find(person => {
     return person.rfid === req.body.buyer;
   });
-  const total = req.body.items.reduce((sum, item) => ((item.cost + sum) * item.count).toFixed(2), 0);
-  person.balance = person.balance - total;
-  if(person.balance >= 0) {
+  const total = req.body.items.reduce((sum, item) => {
+    return (item.cost * item.count + sum);
+  }, 0);
+  person.balance = person.balance - total.toFixed(2);
+  if (person.balance >= 0) {
     fs.writeFileSync('./data.json', JSON.stringify(people));
     GpioModule.openRelais();
-    res.status(200).send({person});
+    res.status(200).send({ person });
   } else {
     res.status(406).end();
   }
@@ -37,7 +39,7 @@ app.post('/newPerson', (req, res) => {
 app.post('/rechargeChip', (req, res) => {
   const people = JSON.parse(fs.readFileSync('./data.json', 'utf8'));
   const person = people.find(person => person.rfid === req.body.newPersonData.person.rfid);
-  console.log(typeof(person.balance), typeof(req.body.newPersonData.balance));
+  console.log(typeof (person.balance), typeof (req.body.newPersonData.balance));
   person.balance = Number(person.balance) + Number(req.body.newPersonData.balance);
   fs.writeFileSync('./data.json', JSON.stringify(people));
   GpioModule.openRelais();
