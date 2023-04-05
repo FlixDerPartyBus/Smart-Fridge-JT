@@ -2,8 +2,8 @@
     <button (click)="openRegisterPerson()">Chip anlegen</button>
     <button (click)="openRechargeChip()">Chip aufladen</button>
     <button (click)="openInfos()">Alle Infos</button>
-    <button (click)="open()">Öffnen</button>
-    <button (click)="logout()">Ausloggen</button>
+    <button id="open" (click)="open()">Öffnen</button>
+    <button id="logout" (click)="logout()">Ausloggen</button>
 </div>
 
 <app-register-person *ngIf="showRegisterPerson" (closeEvent)="close()" (submitNewPersonEvent)="submitNewPerson($event)"></app-register-person>

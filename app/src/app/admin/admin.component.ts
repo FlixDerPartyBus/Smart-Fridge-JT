@@ -25,7 +25,7 @@ export class AdminComponent {
   private userInactive: Subject<any> = new Subject();
 
   private setTimeout() {
-    this.userActivity = setTimeout(() => this.userInactive.next(undefined), 30000);
+    // this.userActivity = setTimeout(() => this.userInactive.next(undefined), 30000);
   }
 
   constructor(

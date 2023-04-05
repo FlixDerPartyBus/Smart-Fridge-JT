@@ -1,0 +1,28 @@
+:host {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+
+    * {
+        flex: 1 1 100%;
+        height: 100%;
+        font-size: 40px;
+    }
+
+    button {
+        border: solid;
+        border-radius: 5px;
+
+        &#submitNewPerson {
+            background: greenyellow;
+            border-color: green;
+        }
+
+        &#close {
+            background: red;
+            border-color: darkred;
+        }
+    }
+}

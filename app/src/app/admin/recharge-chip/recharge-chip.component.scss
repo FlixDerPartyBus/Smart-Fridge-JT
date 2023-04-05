@@ -1,0 +1,36 @@
+:host {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+
+    * {
+        flex: 1 1 100%;
+        height: 100%;
+        font-size: 40px;
+    }
+
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+
+        opacity: 1;
+
+    }
+
+    button {
+        border: solid;
+        border-radius: 5px;
+
+        &#submitNewBalance {
+            background: greenyellow;
+            border-color: green;
+        }
+
+        &#close {
+            background: red;
+            border-color: darkred;
+        }
+    }
+
+}

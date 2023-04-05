@@ -2,9 +2,8 @@
 <input id="rfidInput" ngDefaultControl [(ngModel)]="rfid" (keyup.enter)="inputEvent()" (blur)="inputEvent()"
     placeholder="RFID - antippen und danach Chip an Reader halten" />
 
-
-<input *ngIf="!!person" id="balanceInput" ngDefaultControl [(ngModel)]="newBalance"
+<input [disabled]="!person" id="balanceInput" ngDefaultControl [(ngModel)]="newBalance" type="number"
     placeholder="neues Guthaben (wird auf das Bisherige aufaddiert)" />
 
-<button *ngIf="!!person" id="submitNewBalance" (click)="submitNewBalance()"
-    [disabled]="!newBalance">Fertig</button>
+<button [disabled]="!person" id="submitNewBalance" (click)="submitNewBalance()" [disabled]="!newBalance">Fertig</button>
+<button id="close" (click)="close()">Abbrechen</button>
