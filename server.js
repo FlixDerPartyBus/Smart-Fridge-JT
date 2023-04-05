@@ -17,9 +17,13 @@ app.post('/buy', (req, res) => {
   });
   const total = req.body.items.reduce((sum, item) => ((item.cost + sum) * item.count).toFixed(2), 0);
   person.balance = person.balance - total;
-  fs.writeFileSync('./data.json', JSON.stringify(people));
-  GpioModule.openRelais();
-  res.status(200).send({person});
+  if(person.balance >= 0) {
+    fs.writeFileSync('./data.json', JSON.stringify(people));
+    GpioModule.openRelais();
+    res.status(200).send({person});
+  } else {
+    res.status(406).end();
+  }
 });
 
 app.post('/newPerson', (req, res) => {

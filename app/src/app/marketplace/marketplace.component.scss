@@ -10,7 +10,12 @@
         height: 60px;
         font-size: 50px;
         padding: 5px;
-        background-color: #555555;
+        background-color: orange;
+        display: flex;
+
+        div {
+            flex: 1 1 auto;
+        }
     }
 
     div#listWrapper {
@@ -18,11 +23,16 @@
         align-items: stretch;
         flex: 1 1 auto;
         overflow: hidden;
+
         div#availableList {
             flex: 1 0 50%;
             font-size: 30px;
             overflow: auto;
             border-right: solid black 1px;
+
+            div {
+                height: 40px;
+            }
         }
 
         div#shoppingCartList {
@@ -30,6 +40,47 @@
             font-size: 30px;
             overflow: auto;
             border-left: solid black 1px;
+
+            div {
+                height: 40px;
+            }
         }
+    }
+
+    div#buttonWrapper {
+        display: flex;
+        align-items: end;
+
+        button {
+            flex: 1 1 50%;
+            height: 50px;
+            font-size: 40px;
+            border: solid;
+            border-radius: 5px;
+
+            &#logout {
+                background: red;
+                border-color: darkred;
+            }
+
+            &#admin {
+                background: yellow;
+                border-color: orange;
+            }
+
+            &#buy {
+                background: greenyellow;
+                border-color: green;
+            }
+        }
+    }
+
+    #balanceTooLow {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        font-size: 60px;
+        color: red;
+        background-color: white;
     }
 }

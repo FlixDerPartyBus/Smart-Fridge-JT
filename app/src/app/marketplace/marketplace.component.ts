@@ -19,6 +19,7 @@ export class MarketplaceComponent implements OnInit {
     balance: 0,
     rfid: '0'
   }
+  public showError = false;
 
   constructor(
     public rest: RestService,
@@ -61,6 +62,8 @@ export class MarketplaceComponent implements OnInit {
       .then()
       .catch((err) => {
         console.log(err);
+        this.showError = true;
+        setTimeout(() => this.showError = false, 5000);
       });
   }
 

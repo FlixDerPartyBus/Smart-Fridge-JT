@@ -1,4 +1,4 @@
-<div id="customer">{{currentlyLoggedInPerson.name}} angemeldet {{currentlyLoggedInPerson.balance}}</div>
+<div id="customer">{{currentlyLoggedInPerson.name}} angemeldet <div></div>Guthaben: {{currentlyLoggedInPerson.balance}} €</div>
 <div id="listWrapper">
     <div id="availableList">
         <div *ngFor="let item of allItems" (click)="addItem(item)">{{item.name}}</div>
@@ -7,6 +7,12 @@
         <div *ngFor="let item of shoppingCart" (click)="removeItem(item)">{{item.name}} {{item.count}}</div>
     </div>
 </div>
-<button (click)="logout()">Ausloggen</button>
-<button *ngIf="!!currentlyLoggedInPerson.admin" (click)="admin()">Admin Menü</button>
-<button (click)="buy()"> Kaufen</button>
+<div id="buttonWrapper">
+    <button id="logout" (click)="logout()">Ausloggen</button>
+    <button id="admin" *ngIf="!!currentlyLoggedInPerson.admin" (click)="admin()">Admin Menü</button>
+    <button id="buy" (click)="buy()" [disabled]="shoppingCart.length < 1">Kaufen</button>
+</div>
+
+<div id="balanceTooLow" *ngIf="showError">
+    Dein Guthaben ist zu wenig!
+</div>
