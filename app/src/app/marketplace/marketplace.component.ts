@@ -32,7 +32,6 @@ export class MarketplaceComponent implements OnInit {
   ngOnInit(): void {
     this.currentlyLoggedInPerson = this.rest.currentlyLoggedInPerson!;
     this.rest.getInventory().then((inventory) => {
-      console.log(inventory);
       this.allItems = inventory;
     })
   }
@@ -64,7 +63,6 @@ export class MarketplaceComponent implements OnInit {
     this.rest.buyItems(this.shoppingCart)
       .then()
       .catch((err) => {
-        console.log(err);
         this.showError = true;
         setTimeout(() => this.showError = false, 5000);
       });

@@ -19,7 +19,10 @@ app.post('/buy', (req, res) => {
     return (item.cost * item.count + sum);
   }, 0);
   person.balance = person.balance - (Math.round(total * 100) / 100);
+  console.log(person.total, total);
+  person.total = (person.total ?? 0) + total;
   person.lastSeen = Date();
+  console.log(JSON.stringify(person))
   if (person.balance >= 0) {
     fs.writeFileSync('./data.json', JSON.stringify(people));
     writeLog(JSON.stringify(person) + ' hat ' + JSON.stringify(req.body.items) + ' gekauft');

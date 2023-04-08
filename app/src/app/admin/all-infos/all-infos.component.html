@@ -1,1 +1,18 @@
-<p>all-infos works!</p>
+<table>
+        <tr>
+            <th>Name</th>
+            <th>Guthaben</th>
+            <th>Zuletzt gesehen</th>
+            <th>Insgesamt ausgegeben</th>
+        </tr>
+        <tr *ngFor="let person of allPersons">
+            <td>{{person.name}}</td>
+            <td>{{person.balance}} €</td>
+            <td>{{person.lastSeen}}</td>
+            <td>{{person.total}} €</td>
+        </tr>
+</table>
+
+<div></div>
+
+<button id="close" (click)="close()">Abbrechen</button>
