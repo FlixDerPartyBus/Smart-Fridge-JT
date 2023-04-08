@@ -1,10 +1,10 @@
-<div id="customer">{{currentlyLoggedInPerson.name}} angemeldet <div></div>Guthaben: {{currentlyLoggedInPerson.balance}} €</div>
+<div id="customer">{{currentlyLoggedInPerson.name}} angemeldet <div></div>Guthaben: {{(currentlyLoggedInPerson.balance - calculateShoppingCartTotal()).toFixed(2)}} €</div>
 <div id="listWrapper">
     <div id="availableList">
-        <div *ngFor="let item of allItems" (click)="addItem(item)">{{item.name}}</div>
+        <button class="listButton" *ngFor="let item of allItems" [disabled]="item.cost > currentlyLoggedInPerson.balance - calculateShoppingCartTotal()" (click)="addItem(item)">{{item.name}}</button>
     </div>
     <div id="shoppingCartList">
-        <div *ngFor="let item of shoppingCart" (click)="removeItem(item)">{{item.name}} {{item.count}}</div>
+        <button class="listButton" *ngFor="let item of shoppingCart" (click)="removeItem(item)">{{item.name}} {{item.count}}</button>
     </div>
 </div>
 <div id="buttonWrapper">

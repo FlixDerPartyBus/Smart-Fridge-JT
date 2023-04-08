@@ -75,4 +75,8 @@ export class MarketplaceComponent implements OnInit {
   public admin() {
     this.router.navigate(['admin']);
   }
+
+  public calculateShoppingCartTotal(): number {
+    return Math.round(this.shoppingCart.reduce((sum, item) => (item.cost * item.count + sum), 0) * 100) / 100;
+  }
 }

@@ -24,26 +24,24 @@
         flex: 1 1 auto;
         overflow: hidden;
 
+        .listButton {
+            display: block;
+            height: 40px;
+            font-size: 30px;
+            border: none;
+            background: none;
+        }
+
         div#availableList {
             flex: 1 0 50%;
-            font-size: 30px;
             overflow: auto;
             border-right: solid black 1px;
-
-            div {
-                height: 40px;
-            }
         }
 
         div#shoppingCartList {
             flex: 1 0 50%;
-            font-size: 30px;
             overflow: auto;
             border-left: solid black 1px;
-
-            div {
-                height: 40px;
-            }
         }
     }
 
