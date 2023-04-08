@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { response } from 'express';
 import { Item } from '../interfaces/item';
 import { Person } from '../interfaces/person';
 import { ShoppingCartItem } from '../interfaces/shoppingCartItem';
@@ -38,7 +39,6 @@ export class RestService {
     return new Promise((resolve, reject) => {
       this.http.get<Person[]>('http://localhost:3000/getAllPersons').toPromise()
         .then((response) => {
-          console.log(response)
           if (!!response) {
             resolve(response);
           } else {
@@ -52,6 +52,22 @@ export class RestService {
     });
   }
 
+  public getInventory(): Promise<Item[]> {
+    return new Promise((resolve, reject) => {
+      this.http.get<Item[]>('http://localhost:3000/getInventory').toPromise()
+        .then((response) => {
+          if (!!response) {
+            resolve(response);
+          } else {
+            reject('no inventory found');
+          }
+        })
+        .catch(error => {
+          console.error(error);
+          reject(error);
+        });
+    })
+  }
 
   public buyItems(items: ShoppingCartItem[]): Promise<void> {
     return new Promise((resolve, reject) => {

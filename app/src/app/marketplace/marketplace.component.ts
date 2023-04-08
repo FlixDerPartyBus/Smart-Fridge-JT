@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { items } from '../enums/items';
 import { Item } from '../interfaces/item';
 import { Person } from '../interfaces/person';
 import { ShoppingCartItem } from '../interfaces/shoppingCartItem';
@@ -13,7 +12,7 @@ import { RestService } from '../services/rest.service';
 })
 export class MarketplaceComponent implements OnInit {
   public shoppingCart: ShoppingCartItem[] = [];
-  public allItems = items;
+  public allItems: Item[] = [];
   public currentlyLoggedInPerson: Person = {
     name: 'unkown',
     balance: 0,
@@ -32,6 +31,10 @@ export class MarketplaceComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentlyLoggedInPerson = this.rest.currentlyLoggedInPerson!;
+    this.rest.getInventory().then((inventory) => {
+      console.log(inventory);
+      this.allItems = inventory;
+    })
   }
 
   public addItem(item: Item) {

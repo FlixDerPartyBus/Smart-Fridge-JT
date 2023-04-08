@@ -18,9 +18,11 @@ app.post('/buy', (req, res) => {
   const total = req.body.items.reduce((sum, item) => {
     return (item.cost * item.count + sum);
   }, 0);
-  person.balance = person.balance - total.toFixed(2);
+  person.balance = person.balance - (Math.round(total * 100) / 100);
+  person.lastSeen = Date();
   if (person.balance >= 0) {
     fs.writeFileSync('./data.json', JSON.stringify(people));
+    writeLog(JSON.stringify(person) + ' hat ' + JSON.stringify(req.body.items) + ' gekauft');
     GpioModule.openRelais();
     res.status(200).send({ person });
   } else {
@@ -32,6 +34,7 @@ app.post('/newPerson', (req, res) => {
   const people = JSON.parse(fs.readFileSync('./data.json', 'utf8'));
   people.push(req.body.person);
   fs.writeFileSync('./data.json', JSON.stringify(people));
+  writeLog(JSON.stringify(req.body.person) + ' wurde angelegt ');
   GpioModule.openRelais();
   res.sendStatus(200);
 });
@@ -39,9 +42,9 @@ app.post('/newPerson', (req, res) => {
 app.post('/rechargeChip', (req, res) => {
   const people = JSON.parse(fs.readFileSync('./data.json', 'utf8'));
   const person = people.find(person => person.rfid === req.body.newPersonData.person.rfid);
-  console.log(typeof (person.balance), typeof (req.body.newPersonData.balance));
   person.balance = Number(person.balance) + Number(req.body.newPersonData.balance);
   fs.writeFileSync('./data.json', JSON.stringify(people));
+  writeLog(JSON.stringify(req.body.newPersonData) + ' wurde aufgeladen ');
   GpioModule.openRelais();
   res.sendStatus(200);
 });
@@ -49,6 +52,11 @@ app.post('/rechargeChip', (req, res) => {
 app.post('/open', (req, res) => {
   GpioModule.openRelais();
   res.sendStatus(200);
+});
+
+app.get('/getInventory', (req, res) => {
+  const items = JSON.parse(fs.readFileSync('./inventory.json', 'utf-8'));
+  res.status(200).send(items);
 });
 
 app.get('/getPerson', (req, res) => {
@@ -73,3 +81,15 @@ app.all('*', function (req, res) {
 app.listen(3000, () => {
   require('child_process').exec('chromium-browser --kiosk');
 });
+
+function writeLog(text) {
+  let log;
+  try {
+    log = fs.readFileSync('./log.txt', 'utf-8');
+  } catch {
+    fs.appendFileSync('./log.txt', 'log erstellt am' + Date());
+    log = fs.readFileSync('./log.txt', 'utf-8');
+  }
+  log = log + '\n' + Date() + ' ' + text;
+  fs.writeFileSync('./log.txt', log);
+}
