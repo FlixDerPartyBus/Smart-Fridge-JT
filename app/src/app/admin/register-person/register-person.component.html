@@ -1,6 +1,5 @@
-<input id="nameInput" ngDefaultControl [(ngModel)]="newPerson.name" placeholder="Name" />
-<input id="rfidInput" ngDefaultControl [(ngModel)]="newPerson.rfid"
-placeholder="RFID - antippen und danach Chip an Reader halten" />
-<input id="balanceInput" ngDefaultControl [(ngModel)]="newPerson.balance" placeholder="Guthaben" />
+<input id="nameInput" ngDefaultControl [(ngModel)]="newPerson.name" placeholder="Name" autocomplete="off" />
+<input id="rfidInput" ngDefaultControl [(ngModel)]="newPerson.rfid" placeholder="RFID - antippen und danach Chip an Reader halten" autocomplete="off" />
+<input id="balanceInput" ngDefaultControl [(ngModel)]="newPerson.balance" placeholder="Guthaben" autocomplete="off" />
 <button id="submitNewPerson" (click)="submitNewPerson()" [disabled]="isSubmitDisabled()">Fertig</button>
 <button id="close" (click)="close()">Abbrechen</button>

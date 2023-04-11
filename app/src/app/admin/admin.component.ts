@@ -72,6 +72,10 @@ export class AdminComponent {
     this.showAllInfos = true;
   }
 
+  public back() {
+    this.router.navigate(['marketplace'])
+  }
+
   public close() {
     this.showRegisterPerson = false;
     this.showRechargeChip = false;

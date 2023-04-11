@@ -1,9 +1,9 @@
 <div>Welchen Chip möchtest du Aufladen?</div>
 <input id="rfidInput" ngDefaultControl [(ngModel)]="rfid" (keyup.enter)="inputEvent()" (blur)="inputEvent()"
-    placeholder="RFID - antippen und danach Chip an Reader halten" />
+    placeholder="RFID - antippen und danach Chip an Reader halten" autocomplete="off" />
 
 <input [disabled]="!person" id="balanceInput" ngDefaultControl [(ngModel)]="newBalance" type="number"
-    placeholder="neues Guthaben (wird auf das Bisherige aufaddiert)" />
+    placeholder="neues Guthaben (wird auf das Bisherige aufaddiert)" autocomplete="off" />
 
 <button [disabled]="!person" id="submitNewBalance" (click)="submitNewBalance()" [disabled]="!newBalance">Fertig</button>
 <button id="close" (click)="close()">Abbrechen</button>
