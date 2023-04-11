@@ -38,7 +38,6 @@ app.post('/newPerson', (req, res) => {
   people.push(req.body.person);
   fs.writeFileSync('./data.json', JSON.stringify(people));
   writeLog(JSON.stringify(req.body.person) + ' wurde angelegt ');
-  GpioModule.openRelais();
   res.sendStatus(200);
 });
 
@@ -48,7 +47,6 @@ app.post('/rechargeChip', (req, res) => {
   person.balance = Number(person.balance) + Number(req.body.newPersonData.balance);
   fs.writeFileSync('./data.json', JSON.stringify(people));
   writeLog(JSON.stringify(req.body.newPersonData) + ' wurde aufgeladen ');
-  GpioModule.openRelais();
   res.sendStatus(200);
 });
 

@@ -1,7 +1,7 @@
 <div id="customer">{{currentlyLoggedInPerson.name}} angemeldet <div></div>Guthaben: {{(currentlyLoggedInPerson.balance - calculateShoppingCartTotal()).toFixed(2)}} €</div>
 <div id="listWrapper">
     <div id="availableList">
-        <button class="listButton" *ngFor="let item of allItems" [disabled]="item.cost > currentlyLoggedInPerson.balance - calculateShoppingCartTotal()" (click)="addItem(item)">{{item.name}}</button>
+        <button class="listButton" *ngFor="let item of allItems" [disabled]="item.cost > currentlyLoggedInPerson.balance - calculateShoppingCartTotal()" (click)="addItem(item)">{{(item.cost).toFixed(2)}}€ {{item.name}}</button>
     </div>
     <div id="shoppingCartList">
         <button class="listButton" *ngFor="let item of shoppingCart" (click)="removeItem(item)">{{item.name}} {{item.count}}</button>
@@ -10,7 +10,7 @@
 <div id="buttonWrapper">
     <button id="logout" (click)="logout()">Ausloggen</button>
     <button id="admin" *ngIf="!!currentlyLoggedInPerson.admin" (click)="admin()">Admin Menü</button>
-    <button id="buy" (click)="buy()" [disabled]="shoppingCart.length < 1">Kaufen</button>
+    <button id="buy" (click)="buy()" [disabled]="shoppingCart.length < 1">für {{calculateShoppingCartTotal().toFixed(2)}}€ Kaufen</button>
 </div>
 
 <div id="balanceTooLow" *ngIf="showError">

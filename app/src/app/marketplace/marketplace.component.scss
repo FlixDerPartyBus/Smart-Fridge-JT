@@ -26,10 +26,12 @@
 
         .listButton {
             display: block;
-            height: 40px;
-            font-size: 30px;
+            height: 50px;
+            width: 100%;
+            font-size: 40px;
             border: none;
             background: none;
+            text-align: left;
         }
 
         div#availableList {
